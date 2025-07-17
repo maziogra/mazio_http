@@ -13,6 +13,7 @@ namespace mazio_http {
         public:
             CoreSocket();
             ~CoreSocket();
-            void create(const char* port, const int family, const int type);
+            int create(const char* port, const int family, const int type);
+            void destroy();
     };
 }

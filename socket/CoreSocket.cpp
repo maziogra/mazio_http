@@ -20,13 +20,10 @@ namespace mazio_http {
     }
 
     CoreSocket::~CoreSocket(){
-        if (sock != INVALID_SOCKET) {
-            closesocket(sock);
-        }
-        WSACleanup();
+        destroy();
     }
 
-    void CoreSocket::create(const char* port, const int family, const int type) {
+    int CoreSocket::create(const char* port, const int family, const int type) {
         struct addrinfo hints;
         struct addrinfo *res;
 
@@ -50,7 +47,22 @@ namespace mazio_http {
             }
 
             std::cout << "Socket created successfully on port " << port << std::endl;
+            return 1;
             break;
         }
+
+        return 1;
+    }
+
+    void CoreSocket::destroy() {
+        if(sock != INVALID_SOCKET) {
+            closesocket(sock);
+            sock = INVALID_SOCKET;
+            std::cout << "Socket destroyed successfully" << std::endl;
+        } else {
+            std::cout << "No socket to destroy" << std::endl;
+        }
+
+        WSACleanup();
     }
 }
