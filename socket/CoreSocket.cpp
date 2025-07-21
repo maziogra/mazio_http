@@ -47,11 +47,10 @@ namespace mazio_http {
             }
 
             std::cout << "Socket created successfully on port " << port << std::endl;
-            return 1;
-            break;
+            return 0;
         }
 
-        return 1;
+        return -1;
     }
 
     void CoreSocket::destroy() {

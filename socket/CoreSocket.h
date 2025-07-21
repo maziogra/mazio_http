@@ -15,5 +15,11 @@ namespace mazio_http {
             ~CoreSocket();
             int create(const char* port, const int family, const int type);
             void destroy();
+            SOCKET getSocket() const {
+                return sock;
+            };
+            void setSocket(SOCKET newSocket) {
+                sock = newSocket;
+            };
     };
 }
