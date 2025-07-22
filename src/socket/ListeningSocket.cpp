@@ -16,13 +16,13 @@ namespace mazio_http {
         }
     }
 
-    int ListeningSocket::listen(int backlog = MAX_CON) {
+    int ListeningSocket::listen(int backlog) {
         if(::listen(getSocket(), backlog) == SOCKET_ERROR) {
             std::cerr << "Failed to listen on socket" << std::endl;
             return -1;
         }
 
-        std::cout << "Listening on socket, waiting for connections..." << std::endl;
+        std::cout << "Listening, waiting for connections..." << std::endl;
 
         return 0;
     }
