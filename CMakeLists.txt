@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB_RECURSE SOURCES src/*.cpp main.cpp)
 
 # Crea l'eseguibile
-add_executable(mazi_server ${SOURCES})
+add_executable(mazio_server ${SOURCES})
 
 # Aggiungi include/ come directory per gli header pubblici
-target_include_directories(mazi_server PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_link_libraries(mazi_server ws2_32)
+target_include_directories(mazio_server PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(mazio_server ws2_32)
