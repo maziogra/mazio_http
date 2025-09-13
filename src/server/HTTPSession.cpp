@@ -1,6 +1,8 @@
 #include <server/HTTPSession.h>
 #include <iostream>
 
+#include "http/Request.h"
+
 namespace mazio_http {
     void HTTPSession::handleRequest() {
         char buffer[1024];
@@ -16,10 +18,16 @@ namespace mazio_http {
         }
     
         buffer[received] = '\0';
-        std::cout << "Received request: " << buffer << std::endl;
 
-        const char* response = "HTTP/1.1 200 OK\r\nContent-Length: 13\r\n\r\nHello, World!";
-        ::send(sock, response, strlen(response), 0);
+        mazio_http::Request req(buffer);
+
+        std::string res = "HTTP/1.1 200 OK\r\n"
+        "Content-Type: text/plain\r\n"
+        "Content-Length: 11\r\n"
+        "\r\n"
+        "Hello World";
+
+        ::send(sock, res.c_str(), strlen(res.c_str()), 0);
 
     }
 }

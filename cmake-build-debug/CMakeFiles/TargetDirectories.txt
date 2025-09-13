@@ -1,0 +1,3 @@
+C:/Users/matti/Documents/progetti/mazio_http/cmake-build-debug/CMakeFiles/mazio_server.dir
+C:/Users/matti/Documents/progetti/mazio_http/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/matti/Documents/progetti/mazio_http/cmake-build-debug/CMakeFiles/rebuild_cache.dir

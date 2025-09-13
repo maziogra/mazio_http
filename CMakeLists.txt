@@ -5,7 +5,12 @@ set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB_RECURSE SOURCES src/*.cpp main.cpp)
 
-add_executable(mazio_server ${SOURCES})
+add_executable(mazio_server ${SOURCES}
+        src/http/Request.cpp
+        include/http/Request.h
+        src/http/Request.cpp
+        include/http/Request.h
+        include/http/Methods.h)
 
 target_include_directories(mazio_server PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(mazio_server ws2_32)

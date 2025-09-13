@@ -1,3 +1,5 @@
+#include <memory>
+#include <thread>
 #include <server/ServerHTTP.h>
 #include <server/HTTPSession.h>
 
@@ -10,9 +12,9 @@ namespace mazio_http {
     void ServerHTTP::acceptConnections() {
         while (true) {
             SOCKET n_sock = socket.accept();
-            mazio_http::HTTPSession session(n_sock);
-            session.handleRequest();
-
+            auto session = std::make_shared<mazio_http::HTTPSession>(n_sock);
+            std::thread t(mazio_http::HTTPSession::handleRequest, session);
+            t.detach();
         }
     }
 }
