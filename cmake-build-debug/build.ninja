@@ -63,6 +63,13 @@ build CMakeFiles/mazio_server.dir/src/http/Request.cpp.obj: CXX_COMPILER__mazio_
   OBJECT_DIR = CMakeFiles\mazio_server.dir
   OBJECT_FILE_DIR = CMakeFiles\mazio_server.dir\src\http
 
+build CMakeFiles/mazio_server.dir/src/http/Response.cpp.obj: CXX_COMPILER__mazio_server_unscanned_Debug C$:/Users/matti/Documents/progetti/mazio_http/src/http/Response.cpp || cmake_object_order_depends_target_mazio_server
+  DEP_FILE = CMakeFiles\mazio_server.dir\src\http\Response.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/matti/Documents/progetti/mazio_http/include
+  OBJECT_DIR = CMakeFiles\mazio_server.dir
+  OBJECT_FILE_DIR = CMakeFiles\mazio_server.dir\src\http
+
 build CMakeFiles/mazio_server.dir/src/server/HTTPSession.cpp.obj: CXX_COMPILER__mazio_server_unscanned_Debug C$:/Users/matti/Documents/progetti/mazio_http/src/server/HTTPSession.cpp || cmake_object_order_depends_target_mazio_server
   DEP_FILE = CMakeFiles\mazio_server.dir\src\server\HTTPSession.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
@@ -91,6 +98,13 @@ build CMakeFiles/mazio_server.dir/src/socket/ListeningSocket.cpp.obj: CXX_COMPIL
   OBJECT_DIR = CMakeFiles\mazio_server.dir
   OBJECT_FILE_DIR = CMakeFiles\mazio_server.dir\src\socket
 
+build CMakeFiles/mazio_server.dir/src/utils/Utils.cpp.obj: CXX_COMPILER__mazio_server_unscanned_Debug C$:/Users/matti/Documents/progetti/mazio_http/src/utils/Utils.cpp || cmake_object_order_depends_target_mazio_server
+  DEP_FILE = CMakeFiles\mazio_server.dir\src\utils\Utils.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/matti/Documents/progetti/mazio_http/include
+  OBJECT_DIR = CMakeFiles\mazio_server.dir
+  OBJECT_FILE_DIR = CMakeFiles\mazio_server.dir\src\utils
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target mazio_server
@@ -99,7 +113,7 @@ build CMakeFiles/mazio_server.dir/src/socket/ListeningSocket.cpp.obj: CXX_COMPIL
 #############################################
 # Link the executable mazio_server.exe
 
-build mazio_server.exe: CXX_EXECUTABLE_LINKER__mazio_server_Debug CMakeFiles/mazio_server.dir/main.cpp.obj CMakeFiles/mazio_server.dir/src/http/Request.cpp.obj CMakeFiles/mazio_server.dir/src/server/HTTPSession.cpp.obj CMakeFiles/mazio_server.dir/src/server/ServerHTTP.cpp.obj CMakeFiles/mazio_server.dir/src/socket/CoreSocket.cpp.obj CMakeFiles/mazio_server.dir/src/socket/ListeningSocket.cpp.obj
+build mazio_server.exe: CXX_EXECUTABLE_LINKER__mazio_server_Debug CMakeFiles/mazio_server.dir/main.cpp.obj CMakeFiles/mazio_server.dir/src/http/Request.cpp.obj CMakeFiles/mazio_server.dir/src/http/Response.cpp.obj CMakeFiles/mazio_server.dir/src/server/HTTPSession.cpp.obj CMakeFiles/mazio_server.dir/src/server/ServerHTTP.cpp.obj CMakeFiles/mazio_server.dir/src/socket/CoreSocket.cpp.obj CMakeFiles/mazio_server.dir/src/socket/ListeningSocket.cpp.obj CMakeFiles/mazio_server.dir/src/utils/Utils.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lws2_32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\mazio_server.dir

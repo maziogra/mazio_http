@@ -10,7 +10,9 @@ add_executable(mazio_server ${SOURCES}
         include/http/Request.h
         src/http/Request.cpp
         include/http/Request.h
-        include/http/Methods.h)
+        include/http/Methods.h
+        src/utils/Utils.cpp
+        include/utils/Utils.h)
 
 target_include_directories(mazio_server PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(mazio_server ws2_32)

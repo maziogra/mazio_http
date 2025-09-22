@@ -1,3 +1,4 @@
+#include <iostream>
 #include <http/Request.h>
 
 #include <sstream>

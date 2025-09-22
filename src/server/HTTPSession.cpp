@@ -1,7 +1,8 @@
 #include <server/HTTPSession.h>
 #include <iostream>
 
-#include "http/Request.h"
+#include <http/Request.h>
+#include <utils/Utils.h>
 
 namespace mazio_http {
     void HTTPSession::handleRequest() {
@@ -21,11 +22,18 @@ namespace mazio_http {
 
         mazio_http::Request req(buffer);
 
-        std::string res = "HTTP/1.1 200 OK\r\n"
-        "Content-Type: text/plain\r\n"
-        "Content-Length: 11\r\n"
-        "\r\n"
-        "Hello World";
+        auto lambda = routes.find(req.getPath() + ":" + mazio_http::Utils::methodToString(req.getMethod()));
+        std::string res;
+
+        if (lambda != routes.end()) {
+            res = (lambda->second(req)).toString();
+        } else {
+            res = "HTTP/1.1 200 OK\r\n"
+                    "Content-Type: text/html\r\n"
+                    "Content-Length: 18\r\n"
+                    "\r\n"
+                    "<h1>Not Found</h1>";
+        }
 
         ::send(sock, res.c_str(), strlen(res.c_str()), 0);
 

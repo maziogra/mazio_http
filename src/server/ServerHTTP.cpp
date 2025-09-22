@@ -4,7 +4,7 @@
 #include <server/HTTPSession.h>
 
 namespace mazio_http {
-    void ServerHTTP::start(const char* port) {
+    ServerHTTP::ServerHTTP(const char* port) {
         socket.create(port, AF_INET, SOCK_STREAM);
         socket.listen();
     }
@@ -12,7 +12,7 @@ namespace mazio_http {
     void ServerHTTP::acceptConnections() {
         while (true) {
             SOCKET n_sock = socket.accept();
-            auto session = std::make_shared<mazio_http::HTTPSession>(n_sock);
+            auto session = std::make_shared<mazio_http::HTTPSession>(routes, n_sock);
             std::thread t(mazio_http::HTTPSession::handleRequest, session);
             t.detach();
         }
