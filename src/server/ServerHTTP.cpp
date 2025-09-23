@@ -12,8 +12,8 @@ namespace mazio_http {
     void ServerHTTP::acceptConnections() {
         while (true) {
             SOCKET n_sock = socket.accept();
-            auto session = std::make_shared<mazio_http::HTTPSession>(routes, n_sock);
-            std::thread t(mazio_http::HTTPSession::handleRequest, session);
+            auto session = std::make_shared<HTTPSession>(routes, middlewares, n_sock);
+            std::thread t(HTTPSession::handleRequest, session);
             t.detach();
         }
     }

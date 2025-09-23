@@ -11,10 +11,12 @@
 namespace mazio_http {
     class HTTPSession {
         private:
-            const std::unordered_map<std::string, mazio_http::RoutesHandler>& routes;
+            const Routes& routes;
+            const Middlewares& middlewares;
             SOCKET sock;
+            Response handleRequestThroughChain(Request& req);
         public:
-            HTTPSession(const std::unordered_map<std::string, mazio_http::RoutesHandler>& routes, SOCKET sock) : routes(routes), sock(sock) {}
+            HTTPSession(const Routes& routes, const Middlewares& middlewares, SOCKET sock) : routes(routes), middlewares(middlewares), sock(sock) {}
             ~HTTPSession() = default;
 
             void handleRequest();

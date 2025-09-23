@@ -8,14 +8,19 @@
 #include <utils/Utils.h>
 
 namespace mazio_http {
-    using RoutesHandler = std::function<Response(Request req)>;
+    using RoutesHandler = std::function<Response(Request& req)>;
+    using Routes = std::unordered_map<std::string, RoutesHandler>;
+    using MiddlewaresHandler = std::function<Response(Request& req, std::function<Response(Request&)> next)>;
+    using Middlewares = std::vector<MiddlewaresHandler>;
     class ServerHTTP {
         private:
-            std::unordered_map<std::string, RoutesHandler> routes;
-            mazio_http::ListeningSocket socket;
+            Routes routes;
+            Middlewares middlewares;
+            ListeningSocket socket;
         public:
             ServerHTTP(const char* port);
-            void addRoutes(std::string path, Methods method, const RoutesHandler &handler) { routes[path + ":" + mazio_http::Utils::methodToString(method)] = handler; };
+            void addRoutes(std::string path, Methods method, const RoutesHandler &handler) { routes[path + ":" + Utils::methodToString(method)] = handler; };
+            void addMiddlewares(MiddlewaresHandler md) {middlewares.push_back(md);};
             void acceptConnections();
     };
 }

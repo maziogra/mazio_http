@@ -22,20 +22,29 @@ namespace mazio_http {
 
         mazio_http::Request req(buffer);
 
-        auto lambda = routes.find(req.getPath() + ":" + mazio_http::Utils::methodToString(req.getMethod()));
-        std::string res;
-
-        if (lambda != routes.end()) {
-            res = (lambda->second(req)).toString();
-        } else {
-            res = "HTTP/1.1 200 OK\r\n"
-                    "Content-Type: text/html\r\n"
-                    "Content-Length: 18\r\n"
-                    "\r\n"
-                    "<h1>Not Found</h1>";
-        }
+        Response response = handleRequestThroughChain(req);
+        const std::string res = response.toString();
 
         ::send(sock, res.c_str(), strlen(res.c_str()), 0);
 
+    }
+
+    Response HTTPSession::handleRequestThroughChain(Request& req) {
+        const auto route = routes.find(req.getPath() + ":" + Utils::methodToString(req.getMethod()));
+
+        if (route == routes.end()) {
+            return Response::error(404, "<h1>NOT FOUND</h1>");
+        }
+
+        std::function<Response(Request &)> handler = route->second;
+
+        for (auto it = middlewares.rbegin(); it != middlewares.rend(); ++it) {
+            auto mw = *it;
+            handler = [mw, handler] (Request& r) { return mw(r, handler); };
+        }
+
+        Response response = handler(req);
+
+        return response;
     }
 }
