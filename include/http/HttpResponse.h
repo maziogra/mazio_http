@@ -1,12 +1,11 @@
 #pragma once
 #include <string>
 #include <unordered_map>
-
-#include "Methods.h"
+#include <http/HttpMethods.h>
 
 namespace mazio_http {
 
-    class Response {
+    class HttpResponse {
         private:
           int statusCode;
           std::string version;
@@ -14,12 +13,12 @@ namespace mazio_http {
           static std::string defaultResponseContentType;
           std::unordered_map<std::string, std::string> headers;
         public:
-          Response(int statusCode, std::string body, std::string version) : statusCode(statusCode), body(body), version(version) {};
-          Response(int statusCode, std::string body) : statusCode(statusCode), body(body), version("HTTP/1.1") {};
-          Response(int status_code) : statusCode(status_code), body(""), version("HTTP/1.1") {};
+          HttpResponse(int statusCode, std::string body, std::string version) : statusCode(statusCode), body(body), version(version) {};
+          HttpResponse(int statusCode, std::string body) : statusCode(statusCode), body(body), version("HTTP/1.1") {};
+          HttpResponse(int status_code) : statusCode(status_code), body(""), version("HTTP/1.1") {};
 
-          Response static ok(std::string message = "");
-          Response static error(int statusCode, std::string message = "");
+          HttpResponse static ok(std::string message = "");
+          HttpResponse static error(int statusCode, std::string message = "");
 
           void static setdefaultResponseContentType(std::string contentType) { defaultResponseContentType = contentType; };
 

@@ -2,7 +2,7 @@
 
 namespace mazio_http {
 
-    enum class Methods {
+    enum class HttpMethods {
         GET,
         HEAD,
         POST,

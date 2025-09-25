@@ -2,15 +2,16 @@
 
 #include <iostream>
 
-mazio_http::Response test(mazio_http::Request req) {
-    return mazio_http::Response::ok("IT WORKS!!!!");
+mazio_http::HttpResponse test(mazio_http::HttpRequest req) {
+    std::cout << *req.getQueryParam("name");
+    return mazio_http::HttpResponse::ok("hello");
 }
 
 int main() {
     try {
         mazio_http::ServerHTTP server("8080");
         std::cout << "Server started on port 8080" << std::endl;
-        server.addRoutes("/test", mazio_http::Methods::GET, test);
+        server.addRoutes("/test", mazio_http::HttpMethods::GET, test);
         server.acceptConnections();
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;

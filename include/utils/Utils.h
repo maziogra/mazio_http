@@ -1,10 +1,8 @@
 #pragma once
 #include <string>
-#include <http/Methods.h>
+#include <http/HttpMethods.h>
 
 namespace mazio_http {
-    class Utils {
-    public:
-        static std::string methodToString(mazio_http::Methods method);
-    };
+    std::string methodToString(mazio_http::HttpMethods method);
+    std::unordered_map<std::string, std::string> parseQueryString(const std::string& url);
 }

@@ -2,9 +2,9 @@
 
 #include <functional>
 #include <winsock2.h>
-#include <http/Response.h>
+#include <http/HttpResponse.h>
 
-#include <http/Request.h>
+#include <http/HttpRequest.h>
 
 #include <server/ServerHTTP.h>
 
@@ -14,7 +14,7 @@ namespace mazio_http {
             const Routes& routes;
             const Middlewares& middlewares;
             SOCKET sock;
-            Response handleRequestThroughChain(Request& req);
+            HttpResponse handleRequestThroughChain(HttpRequest& req);
         public:
             HTTPSession(const Routes& routes, const Middlewares& middlewares, SOCKET sock) : routes(routes), middlewares(middlewares), sock(sock) {}
             ~HTTPSession() = default;
